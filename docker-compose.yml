@@ -1,0 +1,26 @@
+services:
+  api:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/api:/code/api
+      - ./src/engine:/code/engine
+    environment:
+      PYTHONPATH: /code
+
+  test:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - ./src/api:/code/api
+      - ./src/engine:/code/engine
+      - ./tests:/code/tests
+    environment:
+      PYTHONPATH: /code
+    entrypoint: ["pytest", "tests/", "-v"]
+    profiles:
+      - test
