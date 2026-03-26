@@ -45,7 +45,7 @@ async def create_board(board: Bug):
         dict: A dictionary containing the evaluation result for the board, or an error message if an exception is raised.
     """
     try:
-        result = main(board.model_dump())
+        result = main(board.model_dump(mode="json"))
     except Exception as e:
         return {"error": str(e)}
     return result
