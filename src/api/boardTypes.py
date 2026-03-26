@@ -42,3 +42,5 @@ class Bug(BaseModel):
     xValue: Optional[int] = None
     yValue: Optional[int] = None
 
+Bug.model_rebuild()
+
